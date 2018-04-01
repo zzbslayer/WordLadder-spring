@@ -3,9 +3,9 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.*;
 import java.util.*;
@@ -13,6 +13,8 @@ import java.util.*;
 @SpringBootApplication
 @RestController
 public class WordLadderApplication{
+
+	static Logger log = LogManager.getLogger(WordLadderApplication.class.getName());
 
 	public static boolean IsAdjacent(String w1,String w2){
 		int difference = 0;
@@ -92,6 +94,7 @@ public class WordLadderApplication{
 	}
 
 	public static Set<String> DicGenerate(String filename)throws IOException{
+		log.debug("Generating Dictionary...\n");
 		Set<String> result = new HashSet<String>();
 
 		DataInputStream in = new DataInputStream(new FileInputStream(filename));
@@ -163,13 +166,16 @@ public class WordLadderApplication{
 	}
 
 	public static String StringLadderGenerate(String w1, String w2)throws IOException{
-
+		log.debug("Generating WordLadder...\n");
 		String dicName = "/Users/Wangruiyan/IdeaProjects/WordLadder-spring/src/main/resources/static/dictionary.txt";
 		Set<String> dic = DicGenerate(dicName);
+		log.debug("Dictionary Generated.\n");
 		if (!IsValid(w1)){
+			log.debug("Invalid word: "+w1+'\n');
 			return ("The first word " + w1 + " is invalid.");
 		}
 		if (!IsValid(w2)){
+			log.debug("Invalid word: "+w2+'\n');
 			return ("The first word " + w2 + " is invalid.");
 		}
 
@@ -177,15 +183,16 @@ public class WordLadderApplication{
 		w2 = w2.toLowerCase();
 
 		if (!IsExist(dic,w1)){
+			log.debug("Not exist: "+w1+'\n');
 			return ("The word" + w1 + " cannot be found in the dictionary.");
 		}
 		if (!IsExist(dic,w2)) {
+			log.debug("Not exist: "+w2+'\n');
 			return ("The word" + w2 + " cannot be found in the dictionary.");
 		}
 
-		System.out.println(w1);
-		System.out.println(w2);
 		if (w1==w2){
+			log.debug("The same: "+w1+'\n');
 			return ("The words are the same.");
 		}
 		Stack<String> result = LadderGenerate(w1, w2, dic);
@@ -195,10 +202,14 @@ public class WordLadderApplication{
 
 	@RequestMapping(value="/WordLadder")
 	public static String CallStringLadderGenerate(String w1, String w2)throws IOException{
-		return "<h3>"+StringLadderGenerate(w1,w2)+"</h3>";
+		log.debug("Call WordLadder\n");
+		String ladder = "<h3>"+StringLadderGenerate(w1,w2)+"</h3>";
+		log.debug("Ladder Generated\n");
+		return ladder;
 	}
 
 	public static void main(String[] args) throws IOException {
+		log.debug("Start of setUp\n");
 		SpringApplication.run(WordLadderApplication.class, args);
 	}
 
