@@ -11,8 +11,7 @@ import static com.example.demo.WordLadderApplication.*;
 /**
  * Unit test for simple App.
  */
-public class WordLadderTest 
-    extends TestCase {
+public class WordLadderTest extends TestCase {
     /**
      * Create the test case
      *
