@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.util.*;
 
-import static com.example.demo.WordLadderApplication.*;
+import com.example.demo.WordLadderApplication.*;
 
 /**
  * Unit test for simple App.
@@ -34,31 +34,34 @@ public class WordLadderApplicationTest extends TestCase {
      * Rigourous Test :-)
      */
     public void testIsAdjacent() {
-        assertTrue( IsAdjacent("bag","bug"));
-        assertTrue( IsAdjacent("cat", "cab"));
-        assertTrue( IsAdjacent( "bag", "bags"));
-        assertTrue( IsAdjacent( "bag", "bang"));
-        assertFalse( IsAdjacent("money", "elephant"));
-        assertFalse( IsAdjacent("money", ""));
-        assertFalse( IsAdjacent("zoo", "zoo"));
+        WordLadderApplication wl = new WordLadderApplication();
+        assertTrue( wl.IsAdjacent("bag","bug"));
+        assertTrue( wl.IsAdjacent("cat", "cab"));
+        assertTrue( wl.IsAdjacent( "bag", "bags"));
+        assertTrue( wl.IsAdjacent( "bag", "bang"));
+        assertFalse( wl.IsAdjacent("money", "elephant"));
+        assertFalse( wl.IsAdjacent("money", ""));
+        assertFalse( wl.IsAdjacent("zoo", "zoo"));
     }
 
     public void testIsExist(){
         Set<String> test = new HashSet<String>();
+        WordLadderApplication wl = new WordLadderApplication();
         test.add("monkey");
         test.add("tiger");
 
-        assertTrue( IsExist(test,"monkey"));
-        assertFalse( IsExist(test,"dog"));
+        assertTrue( wl.IsExist(test,"monkey"));
+        assertFalse( wl.IsExist(test,"dog"));
     }
 
     public void testIsValid(){
-        assertTrue( IsValid("faggawe"));
-        assertFalse( IsValid("fasdf1"));
-        assertFalse( IsValid("awgee;"));
-        assertFalse( IsValid("awgee`0;"));
-        assertFalse( IsValid("awgee"+'\t'));
-        assertFalse( IsValid(""));
+        WordLadderApplication wl = new WordLadderApplication();
+        assertTrue( wl.IsValid("faggawe"));
+        assertFalse( wl.IsValid("fasdf1"));
+        assertFalse( wl.IsValid("awgee;"));
+        assertFalse( wl.IsValid("awgee`0;"));
+        assertFalse( wl.IsValid("awgee"+'\t'));
+        assertFalse( wl.IsValid(""));
     }
 
     /*
