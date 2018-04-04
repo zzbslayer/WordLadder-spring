@@ -6,7 +6,9 @@ import java.util.*;
 
 public class WordLadderApplication{
 
-	public static boolean IsAdjacent(String w1,String w2){
+	private static String dicPath = WordLadderApplication.class.getClassLoader().getResource("static/dictionary.txt").getPath();
+
+	public boolean IsAdjacent(String w1,String w2){
 		int difference = 0;
 
 		int size1 = w1.length();
@@ -47,13 +49,13 @@ public class WordLadderApplication{
 		return false;
 	}
 
-	public static boolean IsExist(Set<String> dic, String word){
+	public boolean IsExist(Set<String> dic, String word){
 		if (dic.contains(word))
 			return true;
 		return false;
 	}
 
-	public static boolean IsValid(String w){
+	public boolean IsValid(String w){
 		if (w=="")
 			return false;
 		char[] ca = w.toCharArray();
@@ -64,14 +66,14 @@ public class WordLadderApplication{
 		return true;
 	}
 
-	public static String PrintStack(Stack<String> s){
+	public String PrintStack(Stack<String> s){
 		String result="";
 		for (String w : s)
 			result = w + " " + result;
 		return result;
 	}
 
-	public static String PrintLadder(Stack<String> s, String w1, String w2){
+	public String PrintLadder(Stack<String> s, String w1, String w2){
 		int size = s.size();
 		String result;
 		if (size!=0){
@@ -83,7 +85,7 @@ public class WordLadderApplication{
 		return result;
 	}
 
-	public static Set<String> DicGenerate(String filename)throws IOException{
+	public Set<String> DicGenerate(String filename)throws IOException{
 		Set<String> result = new HashSet<String>();
 
 		DataInputStream in = new DataInputStream(new FileInputStream(filename));
@@ -96,7 +98,7 @@ public class WordLadderApplication{
 		return result;
 	}
 
-	public static Stack<String> LadderGenerate(String w1, String w2, Set<String> dic){
+	public Stack<String> LadderGenerate(String w1, String w2, Set<String> dic){
 		Stack<String> result = new Stack<String>();
 		if (IsAdjacent(w1, w2)){
 			result.push(w1);
@@ -154,9 +156,8 @@ public class WordLadderApplication{
 		return result;
 	}
 
-	public static String StringLadderGenerate(String w1, String w2)throws IOException{
-		String dicName = "/Users/Wangruiyan/IdeaProjects/WordLadder-spring/src/main/resources/static/dictionary.txt";
-		Set<String> dic = DicGenerate(dicName);
+	public String StringLadderGenerate(String w1, String w2)throws IOException{
+		Set<String> dic = DicGenerate(dicPath);
 		if (!IsValid(w1)){
 			return ("The first word " + w1 + " is invalid.");
 		}
@@ -182,12 +183,12 @@ public class WordLadderApplication{
 		return ladder;
 	}
 
-	public static String CallStringLadderGenerate(String w1, String w2)throws IOException{
-		String ladder = "<h3>"+StringLadderGenerate(w1,w2)+"</h3>";
+	public String CallStringLadderGenerate(String w1, String w2)throws IOException{
+		String ladder = StringLadderGenerate(w1,w2);
 		return ladder;
 	}
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 	}
 
 }

@@ -11,13 +11,13 @@ import static com.example.demo.WordLadderApplication.*;
 /**
  * Unit test for simple App.
  */
-public class WordLadderTest extends TestCase {
+public class WordLadderApplicationTest extends TestCase {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public WordLadderTest( String testName )
+    public WordLadderApplicationTest(String testName )
     {
         super( testName );
     }
@@ -27,7 +27,7 @@ public class WordLadderTest extends TestCase {
      */
     public static Test suite()
     {
-        return new TestSuite( WordLadderTest.class );
+        return new TestSuite( WordLadderApplicationTest.class );
     }
 
     /**
