@@ -1,12 +1,11 @@
 package com.example.demo;
 
 
+import com.example.demo.service.WordLadderService;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.util.*;
-
-import com.example.demo.WordLadderApplication.*;
 
 /**
  * Unit test for simple App.
@@ -34,7 +33,7 @@ public class WordLadderApplicationTest extends TestCase {
      * Rigourous Test :-)
      */
     public void testIsAdjacent() {
-        WordLadderApplication wl = new WordLadderApplication();
+        WordLadderService wl = new WordLadderService();
         assertTrue( wl.IsAdjacent("bag","bug"));
         assertTrue( wl.IsAdjacent("cat", "cab"));
         assertTrue( wl.IsAdjacent( "bag", "bags"));
@@ -46,7 +45,7 @@ public class WordLadderApplicationTest extends TestCase {
 
     public void testIsExist(){
         Set<String> test = new HashSet<String>();
-        WordLadderApplication wl = new WordLadderApplication();
+        WordLadderService wl = new WordLadderService();
         test.add("monkey");
         test.add("tiger");
 
@@ -55,13 +54,20 @@ public class WordLadderApplicationTest extends TestCase {
     }
 
     public void testIsValid(){
-        WordLadderApplication wl = new WordLadderApplication();
+        WordLadderService wl = new WordLadderService();
         assertTrue( wl.IsValid("faggawe"));
         assertFalse( wl.IsValid("fasdf1"));
         assertFalse( wl.IsValid("awgee;"));
         assertFalse( wl.IsValid("awgee`0;"));
         assertFalse( wl.IsValid("awgee"+'\t'));
         assertFalse( wl.IsValid(""));
+    }
+
+    public void testStringLadderGenerate() throws Exception{
+        WordLadderService wl = new WordLadderService();
+        assertTrue( wl.StringLadderGenerate("apple","apple").equals("The words are the same."));
+        assertTrue( wl.StringLadderGenerate("apple","fasd!@!#").equals("The word fasd!@!# is invalid."));
+
     }
 
     /*

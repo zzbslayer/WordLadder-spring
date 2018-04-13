@@ -1,12 +1,19 @@
-package com.example.demo;
+package com.example.demo.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.*;
 
+@Service
+public class WordLadderService {
 
-public class WordLadderApplication{
+	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private static String dicPath = WordLadderApplication.class.getClassLoader().getResource("static/dictionary.txt").getPath();
+	private static String dicName = "dictionary.txt";
+	private static String dicPath = WordLadderService.class.getClassLoader().getResource("static/"+dicName).getPath();
 
 	public boolean IsAdjacent(String w1,String w2){
 		int difference = 0;
@@ -157,12 +164,14 @@ public class WordLadderApplication{
 	}
 
 	public String StringLadderGenerate(String w1, String w2)throws IOException{
+		log.debug("Visit dicPath : "+dicPath);
 		Set<String> dic = DicGenerate(dicPath);
+		log.debug("dic generated.");
 		if (!IsValid(w1)){
-			return ("The first word " + w1 + " is invalid.");
+			return ("The word " + w1 + " is invalid.");
 		}
 		if (!IsValid(w2)){
-			return ("The first word " + w2 + " is invalid.");
+			return ("The word " + w2 + " is invalid.");
 		}
 
 		w1 = w1.toLowerCase();
@@ -175,7 +184,7 @@ public class WordLadderApplication{
 			return ("The word" + w2 + " cannot be found in the dictionary.");
 		}
 
-		if (w1==w2){
+		if (w1.equals(w2)){
 			return ("The words are the same.");
 		}
 		Stack<String> result = LadderGenerate(w1, w2, dic);
@@ -183,12 +192,21 @@ public class WordLadderApplication{
 		return ladder;
 	}
 
-	public String CallStringLadderGenerate(String w1, String w2)throws IOException{
-		String ladder = StringLadderGenerate(w1,w2);
-		return ladder;
+	public String catchIOException(){
+		String errmessage = "Dictionary file <"+ dicName +"> fail to be loaded.";
+		log.debug(errmessage);
+		return errmessage;
 	}
 
-	public void main(String[] args) {
+	public String CallStringLadderGenerate(String w1, String w2){
+		try {
+			String ladder = StringLadderGenerate(w1, w2);
+			return ladder;
+		}
+		catch(IOException e){
+			log.debug("------Exception------");
+			return catchIOException();
+		}
 	}
 
 }
