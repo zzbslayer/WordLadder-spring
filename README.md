@@ -1,12 +1,12 @@
 # Wordladder springboot version
 
-##1. Programme Structure
+## 1. Programme Structure
 - Spring boot
 - Spring Security
 - Spring Data JPA
 - Mysql
 
-##2. Before running this app
+## 2. Before running this app
 Wordladder service will be available after authenticating as <b>ADMIN</b>.
 
 Spring-Security will check from mysql.
@@ -32,7 +32,7 @@ There're two account.
 - Username:ddslayer password:password role:USER
 
 
-##3. Running Example
+## 3. Running Example
 
 After all preparation done, visit\
 <code>
