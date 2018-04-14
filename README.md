@@ -24,6 +24,7 @@ Source these files in mysql.
 
 <code>
 mysql > source {path/table.sql}
+
 mysql > source {path/data.sql}
 </code>
 
