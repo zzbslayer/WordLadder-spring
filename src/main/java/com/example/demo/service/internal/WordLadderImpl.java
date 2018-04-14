@@ -1,18 +1,17 @@
 package com.example.demo.service.internal;
 
-import com.example.demo.service.WordLadderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
 
-public class WordLadder implements WordLadderService{
+public class WordLadderImpl {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static String dicName = "dictionary.txt";
-    private static String dicPath = com.example.demo.service.WordLadderService.class.getClassLoader().getResource("static/"+dicName).getPath();
+    private static String dicPath = WordLadderImpl.class.getClassLoader().getResource("static/"+dicName).getPath();
 
     public boolean IsAdjacent(String w1,String w2){
         int difference = 0;
@@ -175,10 +174,10 @@ public class WordLadder implements WordLadderService{
         w2 = w2.toLowerCase();
 
         if (!IsExist(dic,w1)){
-            return ("The word" + w1 + " cannot be found in the dictionary.");
+            return ("The word " + w1 + " cannot be found in the dictionary.");
         }
         if (!IsExist(dic,w2)) {
-            return ("The word" + w2 + " cannot be found in the dictionary.");
+            return ("The word " + w2 + " cannot be found in the dictionary.");
         }
 
         if (w1.equals(w2)){
@@ -192,6 +191,7 @@ public class WordLadder implements WordLadderService{
     public String catchIOException(){
         String errmessage = "Dictionary file <"+ dicName +"> fail to be loaded.";
         log.debug(errmessage);
+        log.debug("------Exception------");
         return errmessage;
     }
 

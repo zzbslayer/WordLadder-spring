@@ -1,6 +1,6 @@
-package com.zzbslayer.bookstore.repository;
+package com.example.demo.repository;
 
-import com.zzbslayer.bookstore.model.RoleEntity;
+import com.example.demo.model.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

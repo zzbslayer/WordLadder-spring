@@ -1,3 +1,6 @@
+create database wordladder;
+use wordladder
+
 create table users
 	(username		varchar(20),
 	 pw		varchar(20),

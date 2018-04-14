@@ -1,4 +1,4 @@
-package com.zzbslayer.bookstore.model;
+package com.example.demo.model;
 
 import javax.persistence.*;
 

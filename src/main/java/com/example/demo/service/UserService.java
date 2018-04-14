@@ -1,7 +1,7 @@
-package com.zzbslayer.bookstore.service;
+package com.example.demo.service;
 
-import com.zzbslayer.bookstore.model.UserEntity;
-import com.zzbslayer.bookstore.repository.UserRepository;
+import com.example.demo.model.UserEntity;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

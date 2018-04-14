@@ -9,6 +9,8 @@
 <body>
 <div th:substituteby="index::logout"></div>
 <h1>This is a secured page!</h1>
+<p>You can visit localhost:8081/WordLadder/{w1&w2} to generate a word ladder</p>
+<p>For example: <a href="/WordLadder/apple&keep">localhost:8081/WordLadder/apple&keep</a></p>
 <p><a href="/index" th:href="@{/index}">Back to home page</a></p>
 </body>
 </html>

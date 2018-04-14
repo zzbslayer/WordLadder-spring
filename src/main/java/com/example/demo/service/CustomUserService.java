@@ -1,9 +1,9 @@
-package com.zzbslayer.bookstore.service;
+package com.example.demo.service;
 
-import com.zzbslayer.bookstore.model.RoleEntity;
-import com.zzbslayer.bookstore.model.UserEntity;
-import com.zzbslayer.bookstore.repository.RoleRepository;
-import com.zzbslayer.bookstore.repository.UserRepository;
+import com.example.demo.model.RoleEntity;
+import com.example.demo.model.UserEntity;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;

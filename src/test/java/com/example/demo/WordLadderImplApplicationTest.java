@@ -2,6 +2,7 @@ package com.example.demo;
 
 
 import com.example.demo.service.WordLadderService;
+import com.example.demo.service.internal.WordLadderImpl;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -10,13 +11,15 @@ import java.util.*;
 /**
  * Unit test for simple App.
  */
-public class WordLadderApplicationTest extends TestCase {
+public class WordLadderImplApplicationTest extends TestCase {
+
+    private WordLadderImpl wl = new WordLadderImpl();
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public WordLadderApplicationTest(String testName )
+    public WordLadderImplApplicationTest(String testName )
     {
         super( testName );
     }
@@ -26,14 +29,14 @@ public class WordLadderApplicationTest extends TestCase {
      */
     public static Test suite()
     {
-        return new TestSuite( WordLadderApplicationTest.class );
+        return new TestSuite( WordLadderImplApplicationTest.class );
     }
 
     /**
      * Rigourous Test :-)
      */
     public void testIsAdjacent() {
-        WordLadderService wl = new WordLadderService();
+
         assertTrue( wl.IsAdjacent("bag","bug"));
         assertTrue( wl.IsAdjacent("cat", "cab"));
         assertTrue( wl.IsAdjacent( "bag", "bags"));
@@ -45,7 +48,6 @@ public class WordLadderApplicationTest extends TestCase {
 
     public void testIsExist(){
         Set<String> test = new HashSet<String>();
-        WordLadderService wl = new WordLadderService();
         test.add("monkey");
         test.add("tiger");
 
@@ -54,7 +56,6 @@ public class WordLadderApplicationTest extends TestCase {
     }
 
     public void testIsValid(){
-        WordLadderService wl = new WordLadderService();
         assertTrue( wl.IsValid("faggawe"));
         assertFalse( wl.IsValid("fasdf1"));
         assertFalse( wl.IsValid("awgee;"));
@@ -64,7 +65,6 @@ public class WordLadderApplicationTest extends TestCase {
     }
 
     public void testStringLadderGenerate() throws Exception{
-        WordLadderService wl = new WordLadderService();
         assertTrue( wl.StringLadderGenerate("apple","apple").equals("The words are the same."));
         assertTrue( wl.StringLadderGenerate("apple","fasd!@!#").equals("The word fasd!@!# is invalid."));
 
